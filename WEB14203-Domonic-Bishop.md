@@ -8,6 +8,7 @@
 - [Research](#research)
 - [Moodboards](#moodboards)
 - [Wireframes](#wireframes)
+- [Thimble Pusher](#thimble-pusher)
 - [Code Resources](#code-resources)
 - [Code for App](#code-for-app)
 
@@ -37,7 +38,7 @@ We met some members of the Mozilla club at another university, they suggested th
 
 All the other feedback we got consisted of interface and interaction suggestions. One person suggested that a user should be able to choose when they are notified, constant notifications would get annoying quickly. This then led to the realisation that telling people after they had just lost their data, was shutting the barn doors after the horse has bolted. Instead a user could have a pop up notification saying “you are just about to tell Facebook so and so”, and then the user could decide for themselves if they wanted to continue.
 
-## Moodboard
+## Moodboards
 
 ### [This is the moodboard for the Canary app](https://pin.it/dc2mokrwonnfop)
 
@@ -48,3 +49,16 @@ For Canary, I tried to look at interfaces that had good infographics because tha
 The fake Facebook app was designed with the intention of looking like a Facebook product, and the moodboard reflects that.
 
 ## Wireframes
+
+These are the wireframes for the Facebook user finder:
+
+### Home
+<img src="https://i.imgur.com/XxS8YMl.png" width="350">
+
+### Results
+<img src="https://i.imgur.com/YkTFKrJ.png" width="350">
+
+### Details
+<img src="https://i.imgur.com/DQc4IS1.png" width="350">
+
+## [Thimble Pusher](https://thimbleprojects.org/dbishop/377247)
