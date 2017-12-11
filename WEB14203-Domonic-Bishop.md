@@ -68,7 +68,7 @@ These are the wireframes for the Facebook user finder:
 
 ## Website
 
-## [Here's the app up and running on GitHub! :running:](https://dombishop.github.io/A-Day-in-the-Future/Domonic/)
+## [Here's the app up and running on GitHub! :running:](https://dombishop.github.io/Dynamic-Web/)
 
 The app I decided to do was based on the fact that Facebook has tons of personal data from people, and the kind of data they have is jarring. And to express that jarring factor, I picked one mundane piece of information (what device they use for the app) and contrasted that against something more personal (whether or not they have children). By using those two factors as filters, I feel I’ve recreated that jarring feeling within my app.
 
