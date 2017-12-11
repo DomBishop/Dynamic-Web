@@ -75,6 +75,17 @@ The app I decided to do was based on the fact that Facebook has tons of personal
 
 [I also tried to make it look as if it’s a Facebook product by looking at their branding.](https://www.sitepoint.com/fonts-colors-used-facebook-twitter-google/) The font being used on the site is “Roboto” which is the font used on Facebook's Android app. I did try to use their Mac and Windows fonts but they were locked behind copyright that I didn’t want to mess with. The blue used with the site also aligns with Facebook's branding, its #3B5998.
 
+These are screenshots from the final app:
+
+### Home
+<img src="https://i.imgur.com/LXKBYHs.png" width="700">
+
+### Results
+<img src="https://i.imgur.com/1kZKHhK.png" width="700">
+
+### Details
+<img src="https://i.imgur.com/Zit30E8.png" width="700">
+
 ## Code Resources
 
 ### These are the sources that I pulled code from to develop my app:
