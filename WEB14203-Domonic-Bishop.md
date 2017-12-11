@@ -78,12 +78,12 @@ https://www.w3schools.com/tags/att_input_checked.asp
 
 ## Code for app
 
-'''<!doctype html>
+<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>FB user finder</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -193,4 +193,3 @@ https://www.w3schools.com/tags/att_input_checked.asp
 -->
     </body>
 </html>
-'''
