@@ -78,15 +78,6 @@ https://www.w3schools.com/tags/att_input_checked.asp
 
 ## Code for app
 
-- [index.html](#index.html)
-- [main.css](#main.css)
-- [main.js](#main.js)
-- [filter.js](#filter.js)
-- [firebase.js](#firebase.js)
-- [plugins.js](#plugins.js)
-- [show.js](#show.js)
-
-
 ### index.html
 
 ```html
