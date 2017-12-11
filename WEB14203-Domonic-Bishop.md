@@ -32,7 +32,7 @@
 
 ### [The Article that influenced the direction we went in for this project!](https://www.theguardian.com/technology/2017/sep/26/tinder-personal-data-dating-app-messages-hacked-sold)
 
-### Mozilla Festival feedback
+### Mozilla Festival user feedback
 
 At the Mozilla Festival we gained some valuable feedback on our app concept. We showed people our app demo video, and they gave us feedback that varied from user interaction options to how the app could be made to work.
 
