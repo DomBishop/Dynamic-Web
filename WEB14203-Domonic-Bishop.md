@@ -78,6 +78,14 @@ https://www.w3schools.com/tags/att_input_checked.asp
 
 ## Code for app
 
+- [index.html](#index.html)
+- [main.css](#main.css)
+- [main.js](#main.js)
+- [filter.js](#filter.js)
+- [firebase.js](#firebase.js)
+- [plugins.js](#plugins.js)
+- [show.js](#show.js)
+
 
 ### index.html
 
@@ -197,9 +205,10 @@ https://www.w3schools.com/tags/att_input_checked.asp
 -->
     </body>
 </html>
-    ```
-    
+```
 ### main.css
+
+```css
 html {
     font-family: 'Roboto', sans-serif;
     background: #3B5998;
@@ -310,3 +319,338 @@ a {
   font-size: 1.5rem;
 
 }
+```
+### main.js
+
+```js
+// different ways to name variables.. which one do you prefer?
+// var homeGoButton
+// var homegobutton
+// var home_go_button
+// var goBtn
+// var g
+
+// use jQuery to select the HTML elements we're going to manipulate
+// TODO wrap all these in an object, eg: var interface = { home: ... }
+var homeGoButton = $('#home button')
+//var homeDropdown = $('#home select')
+var skillsDropdown = $('#skills')
+var petsDropdown = $('#pets')
+var homeSection = $('#home')
+var resultsSection = $('#results')
+var resultsBackButton = $('#results .back')
+var resultsToggleButton = $('#results .toggle')
+var resultsOL = $('#results ol')
+var detailsSection = $('#details')
+var detailsBackButton = $('#details .back')
+var detailsInfo = $('#details #info')
+
+// define the resultsList outside of any function
+var resultsList = []
+
+// tell the GO button to do something when we click it
+homeGoButton.click( function()
+{
+    // 1. capture the user chosen options
+    var chosenSkill = skillsDropdown.val()
+    var chosenPet = petsDropdown.val()
+    console.log("You picked " + chosenSkill + chosenPet)
+
+    var filters =
+    [
+        {
+            // favouritePet is a string, so we need a value
+            key: chosenPet
+        },
+
+        {
+            // chosenSkill is a number, so no need for a value
+            key: chosenSkill,
+            value: chosenSkill
+        }
+    ]
+
+    // 2. filter+sort people by user selections
+    resultsList = filterAndSortList(peopleList, filters)
+    console.log(resultsList)
+
+    // 3. show the results in the #results section
+    showList(resultsList, resultsOL)
+
+    // 4. what happens when someone clicks on a result?
+    $('#results li').click( function() {
+        // grab the id from the clicked item
+        var resultId = $(this).attr('id')
+        // use the id to get the right data
+        var resultData = resultsList[resultId]
+        console.log(resultData)
+
+        // call the function showDetails()
+        showDetails(resultData, detailsInfo)
+
+        // show the details!
+        resultsSection.hide()
+        detailsSection.show()
+    })
+
+    // 5. show the results!
+    homeSection.hide()
+    resultsSection.show()
+})
+
+// tell the Back button to do something when we click it
+resultsBackButton.click( function(){
+   resultsSection.hide()
+   homeSection.show()
+})
+
+// tell the other Back button to do something when we click it
+detailsBackButton.click( function(){
+   detailsSection.hide()
+   resultsSection.show()
+})
+```
+
+### filter.js
+
+```js
+/**
+ *
+ * Usage:
+ *
+ * var completeList = 
+ * [
+ *      {
+ *          name: "Hillary Clinton",
+ *          bakingSkills: 5,
+ *          likesPets: true,
+ *          party: "Hacked"
+ *      },
+ *      {
+ *          name: "Donald Trump",
+ *          bakingSkills: 0,
+ *          likesPets: false,
+ *          party: "Grope"
+ *      }
+ * ];
+ * 
+ * var filters = 
+ * [
+ *      {
+ *          key: "party", 
+ *          value: "Hacked"
+ *      }, 
+ *      {
+ *          key: "likesPets"
+ *          // if the value is a boolean or number
+ *          // you don't need to express it
+ *       }
+ * ];
+ *
+ * filterAndSortList(completeList, filters);
+ * // will return the object for Hillary
+ */
+
+/**
+ * @param  {Array} - required
+ * @param  {Array} - required
+ * @return {Array}
+ */
+function filterAndSortList(completeList, filters) 
+{
+    // filters must be an array
+    if (filters instanceof Array == false) throw 'The filters parameter must be an array'
+    
+    // 1. assign the whole completeList to filteredAndSortedList
+    var filteredAndSortedList = completeList
+    
+    // 2. loop through all filters
+    filters.forEach(function(filter)
+    {
+        // using the native JS function Array.filter to filter the array and store the result into the filteredAndSortedList
+        // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+        filteredAndSortedList = filteredAndSortedList.filter(function(item) 
+        {
+            // get the item's value for the current key
+            // eg. person['bakingSkills']
+            // see: http://www.w3schools.com/js/js_objects.asp
+            var itemValue = item[filter.key];
+
+            // typeof will check the type of element
+            // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+            // it checks if the value is either a number or a boolean (ie true or false)
+            if (typeof itemValue == 'number')
+            {
+                // if the value is a number, it will check if the number is in between 4 and 5
+                var min = 4;
+                var max = 5;    			
+                return itemValue >= min && itemValue <= max;
+            }
+            if (typeof itemValue == 'boolean') 
+            {
+                return itemValue;
+            }
+            if (typeof itemValue == 'string')
+            {
+                return itemValue == filter.value;
+            }
+        });
+
+        // using the native JS function Array.sort to sort the array and store the result in filteredAndSortedList
+        // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+        filteredAndSortedList = filteredAndSortedList.sort(function(itemA, itemB) 
+        {
+            var valueA = itemA[filter.key];
+            var valueB = itemB[filter.key];
+
+            if (typeof valueA == 'number' && typeof valueB == 'number') 
+            {
+                // this will sort results in descending order if the valueB - valueA is more than 0
+                // or it will sort results in ascending order if the valueB - valueA is less than 0
+                return valueB - valueA;
+            }
+        });
+        
+    })
+    
+    // 3. return the list, filtered and sorted
+    return filteredAndSortedList;
+}
+```
+
+### firebase.js
+
+```js
+var config =
+{
+    apiKey: "AIzaSyD8H2eatEERSfJq1DaTj2PylW-ed_fR0DY",
+    databaseURL: "https://dynamic-web-database.firebaseio.com/"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+var peopleDatabase = database.ref('people');
+var peopleList = [];
+
+peopleDatabase.on('child_added', function( firebaseObject )
+{
+	var person = firebaseObject.val();
+  	peopleList.push(person);
+  	// "push" is JavaScript's lingo for "add to a list"
+})
+
+console.log(peopleList);
+```
+
+### plugins.js
+
+```js
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+    var method;
+    var noop = function () {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+
+    while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
+// Place any jQuery/helper plugins in here.
+```
+
+### show.js
+
+```js
+function makeListItemHTML (data, index) 
+{
+  /*
+    This function creates some nice HTML around data for the #home section
+
+    Return something like this:
+
+    <li>
+        <img src="https://ma.tteo.me/assets/surprise.png">
+        <h2>Matteo</h2>
+    </li>
+  */
+
+  // li = List Item
+  var li  = '<li id="' + index + '">'
+  + '<img src="' + data.image + '">' 
+  + '<h2>' + data.name + '</h2>' 
+  + '</li>'
+
+  return li;        
+}
+
+function makeDetailsHTML (data) 
+{
+  /*
+    This function creates some nice HTML around data for the #details section
+
+    Return something like this:
+
+    <h2>Matteo</h2>
+    <img src="https://ma.tteo.me/assets/surprise.png">
+    <p>I teach people aged 6 to 60+ how to be creative with code.
+    </p>
+    <a class="contact button">Contact Matteo</a>
+  */
+
+  var html = '<h2>' + data.name  + '</h2>' 
+  + '<img src="' + data.image + '">' 
+  + '<p>' + data.about + '</p>'
+  + '<a class="contact button">Contact ' + data.name + '</a>'
+
+  return html;        
+}
+
+// TODO refactor to updateList
+function showList (dataList, interfaceList) 
+{
+    // update the ul content with the result of makeListHTML(list)
+    // .html() is a jQuery function
+    interfaceList.html( makeListHTML(dataList) ); 
+}
+
+// TODO refactor to updateDetails
+function showDetails (data, interfaceElement) 
+{
+  var detailsHTML = makeDetailsHTML(data)
+  interfaceElement.html(detailsHTML)
+}
+
+function makeListHTML (list) 
+{
+  var html = ''; // empty for now, we'll add HTML as we loop through the list 
+  var total = list.length;
+
+  // loop through list
+  var counter = 0;
+  while (counter < total) 
+  {
+    var data = list[counter];
+    var li = makeListItemHTML(data, counter);
+    
+    // add the list item to the html
+    html += li;
+    
+    // update the counter, to avoid infinite loops!
+    counter = counter + 1;
+  }
+  return html;
+}
+```
