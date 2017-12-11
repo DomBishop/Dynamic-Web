@@ -11,6 +11,7 @@
 - [Code Wars Profile](#code-wars-profile)
 - [Website](#website)
 - [Code Resources](#code-resources)
+- [Broken Code](#broken-code)
 - [Code for App](#code-for-app)
 
 ## Presentations
@@ -83,6 +84,119 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover
 https://www.w3schools.com/cssref/css3_pr_border-radius.asp
 
 https://www.w3schools.com/tags/att_input_checked.asp
+
+## Broken Code
+
+This is code I would have liked to use, but I could not find a way to get it working. It would have let me find and display a persons location on a map in the app.
+
+```js
+console.log('mapbox.js ready to roll!')
+
+// this is our "library card" to use Mapbox
+mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGVvbWVuYXBhY2UiLCJhIjoiY2l2Y2lncmJ5MDAzbjJ6bDV4ZWZ1ZWkzcSJ9.ihgOtHA6TAph5UZQyESYfA'
+
+var map = new mapboxgl.Map(
+{
+  // container id specified in the HTML
+  container: 'map',
+  // style URL
+  style: 'mapbox://styles/mapbox/light-v9',
+  // initial position in [long, lat] format
+  center: [0.005353, 51.501597],
+  // initial zoom
+  zoom: 10
+})
+
+// empty list to store all the markers
+var markers = [] 
+
+function wipeMarkers()
+{
+  for (var i = 0; i < markers.length; i++) 
+  {
+    var marker = markers[i]
+    marker.remove()
+  }
+}
+
+function addMarkers(dataList) 
+{
+  // first wipe previous markers
+  wipeMarkers()
+  // then add new ones
+  for (var i = 0; i < dataList.length; i++) 
+  {
+    // store the current data item in a variable
+    var dataItem = dataList[i]
+    // extract the data item coordinates
+    var coordinates = new mapboxgl.LngLat(dataItem.longitude, dataItem.latitude)
+    // create a div element for the marker
+    var div = document.createElement('div')
+    // add a class called 'marker' to the div
+    div.className = 'marker'
+    // create the custom marker
+    var marker = new mapboxgl.Marker(div)
+      .setLngLat(coordinates) // set the marker position
+      .addTo(map) // add the marker to map
+    // add the marker to the list
+    markers.push(marker)
+    
+    // pOOpup
+    // 1. update the details section with data from the selected result
+    // 2. hide the results section
+    // 3. show the details section
+    var clickSteps = 'showDetails(resultsList['+i+'], detailsInfo); resultsSection.hide(); detailsSection.show(); '
+    var popupHTML = '<a onclick="' + clickSteps + '">' + dataItem.name + '</a>'
+    var popup = new mapboxgl.Popup({closeButton:false})
+    popup.setHTML(popupHTML)
+    marker.setPopup(popup)
+  }
+}
+```
+
+```js
+console.log('geolocate.js ready to roll!')
+
+// from http://www.w3schools.com/html/html5_geolocation.asp
+
+if (navigator.geolocation) // if Geolocation is supported by your browser
+{
+    // then call the watchPosition function, and when you have a position, call the showPosition function
+    navigator.geolocation.watchPosition(showPosition)
+    // showPosition is a "callback" function, which will be called at some point in the future
+} 
+
+var userMarker = null // here is where we'll store the marker for our user
+
+function showPosition(position) 
+{
+    console.log(position)
+    
+    // extract the latitude and longitude
+    var latitude = position.coords.latitude
+    var longitude = position.coords.longitude
+    
+    // create new Mapbox LngLat object
+    var coordinates = new mapboxgl.LngLat( longitude, latitude)
+    
+    // create marker if it doesn't exist (in other words, if it's null)
+    if (!userMarker)
+    {
+        // create a div element for the marker
+        var div = document.createElement('div')
+        // add a class called 'marker' to the div
+        div.className = 'marker user'
+        // create the custom marker
+        userMarker = new mapboxgl.Marker(div)
+        .setLngLat(coordinates) // set the marker position
+        .addTo(map) // add the marker to map
+    }
+    else // otherwise just update its coordinates
+    {
+        userMarker.setLngLat(coordinates)
+    }
+}
+```
 
 ## Code for app
 
