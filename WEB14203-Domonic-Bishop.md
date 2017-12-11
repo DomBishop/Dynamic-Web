@@ -1,6 +1,5 @@
 # Dynamic Web
 ## Domonic Bishop
-## [Here's the app up and running on GitHub! :running:](https://dombishop.github.io/A-Day-in-the-Future/Domonic/)
 
 ## Index
 - [Presentations](#presentations)
@@ -10,6 +9,7 @@
 - [Wireframes](#wireframes)
 - [Thimble Pusher](#thimble-pusher)
 - [Code Wars Profile](#code-wars-profile)
+- [Website](#website)
 - [Code Resources](#code-resources)
 - [Code for App](#code-for-app)
 
@@ -65,6 +65,14 @@ These are the wireframes for the Facebook user finder:
 ## [Thimble Pusher](https://thimbleprojects.org/dbishop/377247)
 
 ## [Code Wars Profile](https://www.codewars.com/users/DomBishop)
+
+## Website
+
+## [Here's the app up and running on GitHub! :running:](https://dombishop.github.io/A-Day-in-the-Future/Domonic/)
+
+The app I decided to do was based on the fact that Facebook has tons of personal data from people, and the kind of data they have is jarring. And to express that jarring factor, I picked one mundane piece of information (what device they use for the app) and contrasted that against something more personal (whether or not they have children). By using those two factors as filters, I feel I’ve recreated that jarring feeling within my app.
+
+[I also tried to make it look as if it’s a Facebook product by looking at their branding.](https://www.sitepoint.com/fonts-colors-used-facebook-twitter-google/). The font being used on the site is “Roboto” which is the font used on Facebook's Android app. I did try to use their Mac and Windows fonts but they were locked behind copyright that I didn’t want to mess with. The blue used with the site also aligns with Facebook's branding, its #3B5998.
 
 ## Code Resources
 
