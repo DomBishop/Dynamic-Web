@@ -16,7 +16,7 @@
 
 ## Presentations
 - [Formative](https://docs.google.com/presentation/d/1o_ulJd2_7Ng9AxtXS-1BX0gl-PL-yXv9qvGMJ0i6xnw/edit?usp=sharing)
-- [Summative]()
+- [Summative](https://docs.google.com/presentation/d/1x7Or2OezSr1MhlZxM0e5xeIOw0pACsJz9aTguTsXX0c/edit?usp=sharing)
 
 ## Blogs
 - [What can be some of the challenges when running a workshop?](https://medium.com/@domonic_bishop/what-can-be-some-of-the-challenges-when-running-a-workshop-bc105aa073fd)
