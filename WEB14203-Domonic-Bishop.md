@@ -30,7 +30,7 @@
 
 ## Research
 
-### [The Article that influenced the direction we went in for this project!](https://www.theguardian.com/technology/2017/sep/26/tinder-personal-data-dating-app-messages-hacked-sold)
+### [The article that influenced the direction we went in for this project!](https://www.theguardian.com/technology/2017/sep/26/tinder-personal-data-dating-app-messages-hacked-sold)
 
 ### Mozilla Festival user feedback
 
